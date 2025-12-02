@@ -1,0 +1,109 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #A0A0A0;
+    min-height: 100vh;
+    display: flex;
+    /* Padding luar diperkecil agar tidak makan tempat */
+    padding: 20px; 
+}
+
+/* Container utama (Card Putih) */
+.auth-container {
+    background-color: #E6E6E6;
+    width: 100%;
+    /* Lebar dikurangi dari 450px ke 380px agar lebih ramping */
+    max-width: 380px; 
+    margin: auto; /* Posisi tengah otomatis */
+    
+    /* Padding dalam card dikurangi drastis (40px -> 25px) */
+    padding: 25px; 
+    
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.auth-header {
+    text-align: center;
+    /* Jarak header ke form dikurangi (30px -> 15px) */
+    margin-bottom: 15px; 
+}
+
+.auth-header h2 {
+    /* Font judul diperkecil sedikit */
+    font-size: 20px; 
+    font-weight: bold;
+    color: #000;
+    line-height: 1.2;
+}
+
+/* Input Group */
+.form-group {
+    /* Jarak antar input diperkecil (15px -> 10px) */
+    margin-bottom: 10px; 
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 4px; /* Jarak label ke input lebih rapat */
+    color: #555;
+    font-size: 13px; /* Font label sedikit lebih kecil */
+}
+
+.form-group input {
+    width: 100%;
+    /* Padding dalam input dikurangi (12px -> 8px) */
+    padding: 8px 12px; 
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #F0F0F0;
+    outline: none;
+    font-size: 13px; /* Font ketikan user disesuaikan */
+    transition: 0.3s;
+}
+
+.form-group input:focus {
+    border-color: #000;
+    background-color: #fff;
+}
+
+/* Tombol Submit */
+.btn-submit {
+    width: 100%;
+    /* Tombol lebih tipis (14px -> 10px) */
+    padding: 10px; 
+    background-color: #BDBDBD;
+    border: 1px solid #999;
+    color: #000;
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    /* Jarak tombol ke input terakhir dikurangi */
+    margin-top: 15px; 
+    transition: 0.3s;
+}
+
+.btn-submit:hover {
+    background-color: #999;
+}
+
+/* Link Login */
+.auth-footer {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 12px; /* Font footer diperkecil */
+    color: #333;
+}
+
+.auth-footer a {
+    color: #000;
+    font-weight: bold;
+    text-decoration: underline;
+}
