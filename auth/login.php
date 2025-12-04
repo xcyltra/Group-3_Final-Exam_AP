@@ -9,30 +9,23 @@ if (isset($_POST['login'])) {
     $password = $_POST['password'];
 
     try {
-        // Cari user berdasarkan username
         $stmt = $conn->prepare("SELECT * FROM user WHERE username = :username");
         $stmt->execute([':username' => $username]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // Jika user ketemu DAN password cocok
         if ($user && password_verify($password, $user['password'])) {
-            
-            // Simpan data penting ke SESSION
             $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['full_name'] = $user['full_name'];
             $_SESSION['role'] = $user['role'];
 
-            // Cek Role untuk mengarahkan ke folder yang benar
             if ($user['role'] == 'admin') {
-                header("Location: ../admin/dashboard.php");
+                header("Location: ../admin/index.php");
             } elseif ($user['role'] == 'interviewer') {
-                header("Location: ../interviewer/dashboard.php");
+                header("Location: ../interviewer/index.php");
             } else {
-                // Default candidate
-                header("Location: ../candidate/dashboard.php");
+                header("Location: ../index.php");
             }
             exit;
-
         } else {
             $message = "<script>alert('Username atau Password Salah!');</script>";
         }
@@ -47,37 +40,65 @@ if (isset($_POST['login'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Miso Corporation</title>
+    <title>Masuk - Miso Corporation</title>
+    
+    <!-- Font Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="../assets/css/style.css?v=<?php echo time(); ?>">
 </head>
 <body>
+
     <?php echo $message; ?>
 
-    <div class="auth-container">
-        <div class="auth-header">
-            <div style="text-align: left; margin-bottom: 15px;">
-                <a href="../index.php" style="text-decoration:none; color:black; font-size: 24px;">&larr;</a>
+    <!-- WRAPPER LOGIN (Pengganti body flex) -->
+    <div class="login-wrapper">
+        
+        <div class="login-container">
+            
+            <!-- KARTU LOGIN -->
+            <div class="login-card">
+                
+                <!-- Header Kartu -->
+                <div class="login-header-card">
+                    <!-- Ikon Panah Kembali -->
+                    <a href="../index.php" class="back-icon">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </a>
+                    
+                    <h2>Masuk ke Akun<br>Miso Corporation</h2>
+                </div>
+
+                <!-- FORM LOGIN -->
+                <form action="" method="POST">
+                    
+                    <div class="form-group-login">
+                        <label>Username</label>
+                        <input type="text" name="username" required autocomplete="off">
+                    </div>
+
+                    <div class="form-group-login">
+                        <label>Password</label>
+                        <input type="password" name="password" required>
+                    </div>
+
+                    <button type="submit" name="login" class="btn-submit-login">Submit</button>
+                </form>
+
+            </div> <!-- End Login Card -->
+
+            <!-- FOOTER LOGIN -->
+            <div class="login-footer">
+                Belum punya akun? <a href="register.php">Daftar disini</a>
             </div>
-            <h2>Masuk ke Akun<br>Miso Corporation</h2>
-        </div>
 
-        <form action="" method="POST">
-            <div class="form-group">
-                <label>Username</label>
-                <input type="text" name="username" required autocomplete="off">
-            </div>
+        </div> <!-- End Login Container -->
 
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" name="password" required>
-            </div>
+    </div> <!-- End Login Wrapper -->
 
-            <button type="submit" name="login" class="btn-submit">Masuk</button>
-        </form>
-
-        <div class="auth-footer">
-            Belum punya akun? <a href="register.php">Daftar disini</a>
-        </div>
-    </div>
 </body>
 </html>

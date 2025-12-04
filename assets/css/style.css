@@ -1,109 +1,473 @@
-/* Reset CSS */
+/* =========================================
+   1. RESET DASAR & GLOBAL
+   ========================================= */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
-    background-color: #A0A0A0;
+    background-color: #A0A0A0; /* Background abu-abu gelap sesuai gambar */
+    padding-bottom: 50px;
     min-height: 100vh;
+}
+
+/* =========================================
+   2. NAVBAR STYLE
+   ========================================= */
+.navbar {
+    background-color: #D9D9D9;
+    padding: 15px 40px;
     display: flex;
-    /* Padding luar diperkecil agar tidak makan tempat */
-    padding: 20px; 
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
 }
 
-/* Container utama (Card Putih) */
-.auth-container {
-    background-color: #E6E6E6;
-    width: 100%;
-    /* Lebar dikurangi dari 450px ke 380px agar lebih ramping */
-    max-width: 380px; 
-    margin: auto; /* Posisi tengah otomatis */
-    
-    /* Padding dalam card dikurangi drastis (40px -> 25px) */
-    padding: 25px; 
-    
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+.navbar .logo {
+    font-weight: 700;
+    font-size: 24px;
 }
 
-.auth-header {
-    text-align: center;
-    /* Jarak header ke form dikurangi (30px -> 15px) */
-    margin-bottom: 15px; 
+.navbar .nav-links a {
+    text-decoration: none;
+    color: #888;
+    margin: 0 15px;
+    font-size: 18px;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
 }
 
-.auth-header h2 {
-    /* Font judul diperkecil sedikit */
-    font-size: 20px; 
-    font-weight: bold;
+/* Class Active untuk Navbar (Dipakai di Home & About) */
+.navbar .nav-links a.active {
+    background-color: #A0A0A0;
     color: #000;
-    line-height: 1.2;
+    font-weight: 500;
+    box-shadow: 0 4px 4px rgba(0,0,0,0.25);
 }
 
-/* Input Group */
-.form-group {
-    /* Jarak antar input diperkecil (15px -> 10px) */
-    margin-bottom: 10px; 
+.navbar .auth-links a {
+    text-decoration: none;
+    color: #000;
+    margin-left: 20px;
+    font-size: 18px;
 }
 
-.form-group label {
-    display: block;
-    margin-bottom: 4px; /* Jarak label ke input lebih rapat */
+.btn-daftar {
+    background-color: #A0A0A0;
+    padding: 8px 20px;
+    border-radius: 5px;
+    color: white !important;
+}
+
+/* =========================================
+   3. SEARCH SECTION STYLE
+   ========================================= */
+.search-section {
+    padding: 20px 40px;
+}
+
+.search-bar {
+    background-color: #C3C3C3;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    gap: 15px;
+}
+
+.search-bar input, .search-bar select {
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #EBE9E9;
     color: #555;
-    font-size: 13px; /* Font label sedikit lebih kecil */
+    flex-grow: 1;
 }
 
-.form-group input {
-    width: 100%;
-    /* Padding dalam input dikurangi (12px -> 8px) */
-    padding: 8px 12px; 
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    background-color: #F0F0F0;
-    outline: none;
-    font-size: 13px; /* Font ketikan user disesuaikan */
-    transition: 0.3s;
-}
-
-.form-group input:focus {
-    border-color: #000;
-    background-color: #fff;
-}
-
-/* Tombol Submit */
-.btn-submit {
-    width: 100%;
-    /* Tombol lebih tipis (14px -> 10px) */
-    padding: 10px; 
-    background-color: #BDBDBD;
-    border: 1px solid #999;
-    color: #000;
-    font-weight: bold;
-    font-size: 14px;
-    border-radius: 6px;
+.btn-search {
+    background-color: #EBE9E9;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 4px;
     cursor: pointer;
-    /* Jarak tombol ke input terakhir dikurangi */
-    margin-top: 15px; 
+    font-weight: 500;
+    box-shadow: 0 4px 4px rgba(0,0,0,0.1);
+}
+
+/* =========================================
+   4. MAIN LAYOUT (SIDEBAR + CONTENT)
+   ========================================= */
+.container {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 30px;
+    padding: 0 40px;
+    margin-top: 10px;
+}
+
+/* Sidebar Style */
+.sidebar {
+    background-color: #D9D9D9;
+    padding: 20px;
+    border-radius: 8px;
+    height: fit-content;
+}
+
+.sidebar h3 {
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.sidebar .divider {
+    height: 1px;
+    background-color: #000;
+    opacity: 0.5;
+    margin-bottom: 15px;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar ul li {
+    margin-bottom: 12px;
+    font-size: 18px;
+}
+
+.sidebar input[type="checkbox"] {
+    margin-right: 10px;
+    transform: scale(1.2);
+}
+
+/* Job List Content Style */
+.content h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.job-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* =========================================
+   5. JOB CARD STYLE
+   ========================================= */
+.job-card {
+    background-color: #EBE9E9;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 4px rgba(0,0,0,0.25);
+    display: flex;
+    flex-direction: column;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.card-header h3 {
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.card-header .salary {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.tags {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.tags span {
+    background-color: #C3C3C3;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.description {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    height: 80px;
+    overflow: hidden;
+}
+
+.divider-card {
+    height: 1px;
+    background-color: #000;
+    opacity: 0.2;
+    margin-bottom: 10px;
+    margin-top: auto;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/* =========================================
+   6. AUTH PAGES (LOGIN & REGISTER)
+   ========================================= */
+.auth-wrapper, .login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 80px);
+    padding: 20px;
+}
+
+.auth-card, .login-card {
+    background-color: #D9D9D9; /* Login: #EBE9E9, Register: #D9D9D9 (Sesuai kode Anda) */
+    width: 100%;
+    max-width: 450px;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    position: relative;
+}
+
+/* Khusus Login Card backgroundnya agak beda di kode sebelumnya */
+.login-card { background-color: #EBE9E9; }
+
+.auth-header, .login-header-card {
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.back-btn, .back-icon {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 22px;
+    color: #000;
+    text-decoration: none;
+}
+
+.auth-header h2, .login-header-card h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #000;
+}
+
+.form-control, .form-group-login input {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: #EBE9E9; /* Login: #F5F5F5 */
+    font-size: 14px;
+    outline: none;
+    margin-bottom: 15px;
+}
+
+/* Khusus input Login */
+.form-group-login input { background-color: #F5F5F5; border: 1px solid #D9D9D9; }
+
+.btn-submit-auth, .btn-submit-login {
+    width: 100%;
+    padding: 12px;
+    margin-top: 25px;
+    background-color: #BDBDBD; /* Login: #C3C3C3 */
+    border: 1px solid #999;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
     transition: 0.3s;
 }
 
-.btn-submit:hover {
-    background-color: #999;
-}
+.btn-submit-login { background-color: #C3C3C3; border: none; }
 
-/* Link Login */
-.auth-footer {
+.auth-footer, .login-footer {
     text-align: center;
-    margin-top: 15px;
-    font-size: 12px; /* Font footer diperkecil */
+    margin-top: 20px;
+    font-size: 13px;
     color: #333;
 }
 
-.auth-footer a {
-    color: #000;
-    font-weight: bold;
-    text-decoration: underline;
+/* =========================================
+   7. HALAMAN TENTANG PERUSAHAAN (BARU)
+   ========================================= */
+.about-container {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
+.about-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.about-header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #000;
+}
+
+/* Kartu Konten Besar di Tengah */
+.about-card {
+    background-color: #D9D9D9;
+    width: 100%;
+    max-width: 1200px;
+    height: 600px; /* Tinggi fix sesuai permintaan */
+    border-radius: 8px;
+    padding: 60px 40px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.about-card p {
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #000;
+    max-width: 900px;
+}
+
+/* =========================================
+   8. HALAMAN ADMIN / DASHBOARD STYLE
+   ========================================= */
+
+/* Wrapper utama konten admin agar tidak mepet pinggir */
+.admin-container {
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Judul Halaman Admin */
+.admin-header-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #000;
+}
+
+/* Tombol Tambah Lowongan */
+.btn-add-job {
+    display: inline-block;
+    background-color: #333; /* Warna gelap agar kontras */
+    color: #fff !important;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 500;
+    margin-bottom: 25px;
+    transition: background 0.3s;
+    box-shadow: 0 4px 4px rgba(0,0,0,0.25);
+}
+
+.btn-add-job:hover {
+    background-color: #000;
+}
+
+/* Container Tabel (Agar tabel punya background kartu) */
+.table-responsive {
+    background-color: #EBE9E9; /* Warna terang sesuai tema kartu lain */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    overflow-x: auto; /* Agar bisa discroll jika layar kecil */
+}
+
+/* Styling Tabel Utama */
+.table-admin {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.table-admin thead tr {
+    background-color: #C3C3C3; /* Header tabel agak gelap */
+    text-align: left;
+}
+
+.table-admin th, 
+.table-admin td {
+    padding: 15px;
+    border-bottom: 1px solid #bbb;
+    font-size: 15px;
+}
+
+.table-admin th {
+    font-weight: 700;
+    color: #000;
+    white-space: nowrap;
+}
+
+.table-admin tr:last-child td {
+    border-bottom: none;
+}
+
+/* Efek Hover pada Baris Tabel */
+.table-admin tbody tr:hover {
+    background-color: #D9D9D9;
+}
+
+/* =========================================
+   9. TOMBOL AKSI (EDIT & HAPUS)
+   ========================================= */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+/* Style dasar untuk tombol Edit dan Hapus */
+.btn-action {
+    padding: 6px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-align: center;
+}
+
+/* Tombol Edit (Warna Abu-abu/Biru pudar) */
+.btn-edit {
+    background-color: #888; 
+    color: #fff !important;
+    border: 1px solid #888;
+}
+
+.btn-edit:hover {
+    background-color: #666;
+}
+
+/* Tombol Hapus (Warna Merah pudar atau Abu gelap) */
+.btn-delete {
+    background-color: #A0A0A0; /* Atau gunakan #d9534f jika ingin merah */
+    color: #fff !important;
+    border: 1px solid #A0A0A0;
+}
+
+.btn-delete:hover {
+    background-color: #d32f2f; /* Merah saat dihover agar user waspada */
+    border-color: #d32f2f;
+}
+
