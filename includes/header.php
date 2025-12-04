@@ -2,7 +2,7 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-$base_url = "/recruitment"; 
+$base_url = "/Group-3_Final-Exam_AP"; 
 
 // Deteksi nama file saat ini (index.php atau about.php)
 $current_page = basename($_SERVER['PHP_SELF']);
