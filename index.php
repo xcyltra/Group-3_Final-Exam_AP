@@ -119,7 +119,7 @@ $departments = $stmtDepts->fetchAll(PDO::FETCH_ASSOC);
                             <span>Tutup: <?php echo date('d F Y', strtotime($job['closing_date'])); ?></span>
                         </div>
                         
-                        <a href="jobs/detail.php?id=<?php echo $job['job_id']; ?>" style="margin-top: 15px; text-align: right; color: #000; font-weight: 600; text-decoration: underline; font-size: 14px;">Lihat Detail &rarr;</a>
+                        <a href="admin/jobs/detail.php?id=<?php echo $job['job_id']; ?>" style="margin-top: 15px; text-align: right; color: #000; font-weight: 600; text-decoration: underline; font-size: 14px;">Lihat Detail &rarr;</a>
                     </div>
 
                     <?php endforeach; ?>

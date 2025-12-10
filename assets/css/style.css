@@ -19,48 +19,97 @@ body {
    ========================================= */
 .navbar {
     background-color: #D9D9D9;
-    padding: 15px 40px;
+    padding: 0 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 80px;
+    height: 70px; /* Tinggi disesuaikan menjadi 70px */
+}
+
+/* Grouping Bagian Kiri (Logo + Menu) */
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 40px;
 }
 
 .navbar .logo {
     font-weight: 700;
-    font-size: 24px;
+    font-size: 20px; /* Ukuran font logo disesuaikan */
+    color: #000;
+    text-decoration: none;
+}
+
+.navbar .nav-links {
+    display: flex;
+    gap: 15px;
 }
 
 .navbar .nav-links a {
     text-decoration: none;
-    color: #888;
-    margin: 0 15px;
-    font-size: 18px;
+    color: #888; /* Warna teks menu tidak aktif */
+    font-size: 16px;
     padding: 8px 15px;
-    border-radius: 5px;
-    transition: all 0.3s ease;
+    border-radius: 6px;
+    transition: all 0.3s;
 }
 
-/* Class Active untuk Navbar (Dipakai di Home & About) */
+/* Tombol Aktif (Dashboard) */
 .navbar .nav-links a.active {
     background-color: #A0A0A0;
     color: #000;
     font-weight: 500;
-    box-shadow: 0 4px 4px rgba(0,0,0,0.25);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
-.navbar .auth-links a {
+/* Grouping Bagian Kanan (User / Profil) */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+}
+
+.navbar .nav-right a {
     text-decoration: none;
-    color: #000;
-    margin-left: 20px;
-    font-size: 18px;
+    color: #000;       /* Warna teks default (Hitam) */
+    font-size: 16px;   /* Ukuran font */
+    font-weight: 500;
+    transition: all 0.3s ease;
 }
 
+/* Efek Hover untuk Link biasa ("Masuk") */
+.navbar .nav-right a:hover {
+    color: #555;
+}
+
+/* 2. Gaya Khusus Tombol "Daftar" */
 .btn-daftar {
     background-color: #A0A0A0;
-    padding: 8px 20px;
-    border-radius: 5px;
-    color: white !important;
+    padding: 8px 24px;       /* Padding agar tombol terlihat kotak & lebar */
+    border-radius: 6px;      /* Sudut sedikit melengkung */
+    color: white !important; /* Warna teks putih (wajib !important agar tidak tertimpa warna hitam di atas) */
+    font-weight: 600;
+    display: inline-block;   /* Agar padding berfungsi sempurna */
+    transition: background 0.3s ease;
+}
+
+/* Efek Hover untuk Tombol "Daftar" */
+.btn-daftar:hover {
+    background-color: #808080; /* Warna lebih gelap saat disentuh */
+    transform: translateY(-2px); /* Efek naik sedikit */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.profile-icon {
+    background-color: #A0A0A0;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
 }
 
 /* =========================================
@@ -89,13 +138,22 @@ body {
 }
 
 .btn-search {
-    background-color: #EBE9E9;
+    background-color: #EBE9E9; /* Warna terang sesuai gambar contoh */
+    color: #000;               /* Teks hitam */
     border: none;
-    padding: 12px 30px;
-    border-radius: 4px;
+    padding: 12px 30px;        /* Ukuran tombol */
+    border-radius: 5px;
+    font-weight: 600;
     cursor: pointer;
-    font-weight: 500;
-    box-shadow: 0 4px 4px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    height: 100%;              /* Agar tingginya sama dengan input lain */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Bayangan halus */
+}
+
+.btn-search:hover {
+    background-color: #d4d4d4; /* Sedikit lebih gelap saat disentuh */
+    transform: translateY(-1px);
 }
 
 /* =========================================
@@ -314,6 +372,10 @@ body {
     align-items: center;
 }
 
+.header-center {
+    justify-content: center !important; /* Memaksa konten flex ke tengah */
+    text-align: center;                 /* Menengahkan teks di dalam elemennya */
+}
 .about-header {
     text-align: center;
     margin-bottom: 30px;
@@ -352,80 +414,151 @@ body {
    8. HALAMAN ADMIN / DASHBOARD STYLE
    ========================================= */
 
-/* Wrapper utama konten admin agar tidak mepet pinggir */
-.admin-container {
-    padding: 40px;
-    max-width: 1200px;
-    margin: 0 auto;
+.dashboard-container {
+    padding: 30px 40px;
+    max-width: 100%; /* Agar memenuhi lebar layar sesuai grid */
 }
 
-/* Judul Halaman Admin */
-.admin-header-title {
-    font-size: 28px;
+.dashboard-container h2 {
+    font-size: 24px;
     font-weight: 700;
-    margin-bottom: 20px;
-    color: #000;
-}
-
-/* Tombol Tambah Lowongan */
-.btn-add-job {
-    display: inline-block;
-    background-color: #333; /* Warna gelap agar kontras */
-    color: #fff !important;
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-weight: 500;
     margin-bottom: 25px;
-    transition: background 0.3s;
-    box-shadow: 0 4px 4px rgba(0,0,0,0.25);
-}
-
-.btn-add-job:hover {
-    background-color: #000;
-}
-
-/* Container Tabel (Agar tabel punya background kartu) */
-.table-responsive {
-    background-color: #EBE9E9; /* Warna terang sesuai tema kartu lain */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    overflow-x: auto; /* Agar bisa discroll jika layar kecil */
-}
-
-/* Styling Tabel Utama */
-.table-admin {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-}
-
-.table-admin thead tr {
-    background-color: #C3C3C3; /* Header tabel agak gelap */
-    text-align: left;
-}
-
-.table-admin th, 
-.table-admin td {
-    padding: 15px;
-    border-bottom: 1px solid #bbb;
-    font-size: 15px;
-}
-
-.table-admin th {
-    font-weight: 700;
     color: #000;
-    white-space: nowrap;
 }
 
-.table-admin tr:last-child td {
-    border-bottom: none;
+/* Grid Layout 4 Kolom */
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr; /* 4 Kolom proporsional */
+    gap: 20px;
+    align-items: stretch;
 }
 
-/* Efek Hover pada Baris Tabel */
-.table-admin tbody tr:hover {
-    background-color: #D9D9D9;
+/* Kartu Statistik */
+.stat-card {
+    background-color: #EBE9E9;
+    border-radius: 8px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 220px; /* Tinggi fix sesuai target */
+}
+
+/* Kolom Khusus (Bertumpuk) */
+.stat-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Kartu Kecil */
+.stat-card.small {
+    flex: 1;
+    min-height: auto;
+    justify-content: center;
+}
+
+/* Typography Judul Kartu */
+.stat-card h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 10px;
+    z-index: 2;
+    position: relative;
+}
+
+/* Typography Angka Besar */
+.stat-card .number {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #000;
+    z-index: 2;
+    position: relative;
+}
+
+/* Detail Text (List) */
+.details {
+    font-size: 13px;
+    color: #333;
+    z-index: 2;
+    position: relative;
+}
+
+.details p {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.details ul {
+    list-style: none;
+    padding: 0;
+}
+
+.details ul li {
+    margin-bottom: 3px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Icon Background (Class CSS pengganti atribut SVG) */
+.bg-icon {
+    position: absolute;
+    right: -15px;
+    bottom: -15px;
+    width: 120px;
+    height: 120px;
+    color: #999;
+    opacity: 0.15; /* Transparansi watermark */
+    pointer-events: none;
+    z-index: 1;
+    
+    /* Properti SVG */
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Icon Kecil Standar (Navbar/Tombol) */
+.icon-svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vertical-align: middle;
+}
+
+/* Responsif Tablet & HP */
+@media (max-width: 1024px) {
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+    .stats-grid { grid-template-columns: 1fr; }
+}
+
+/* Utilities Tombol Header (opsional, jika tombol tambah ada di atas) */
+.btn-header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    display: inline-block;
+}
+.btn-header:hover {
+    background-color: #000;
 }
 
 /* =========================================
@@ -471,3 +604,743 @@ body {
     border-color: #d32f2f;
 }
 
+/* =========================================
+   DASHBOARD ADMIN STYLE (Tambahan)
+   ========================================= */
+
+/* Grid Layout 4 Kolom */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    align-items: stretch;
+}
+
+/* Kartu Statistik */
+.stat-card {
+    background-color: #F5F5F5; /* Warna terang/putih tulang */
+    border-radius: 8px;
+    padding: 25px 20px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 240px; /* Tinggi disesuaikan agar muat list */
+    transition: transform 0.2s;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Kolom Khusus (Stacked/Bertumpuk) */
+.stat-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Kartu Kecil (di dalam kolom bertumpuk) */
+.stat-card.small {
+    flex: 1;
+    min-height: auto;
+    justify-content: center;
+}
+
+/* Typography dalam Kartu */
+.stat-card h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 10px;
+    z-index: 2;
+    position: relative;
+}
+
+.stat-card .number {
+    font-size: 36px;
+    font-weight: 800;
+    color: #000;
+    margin-bottom: 15px;
+    z-index: 2;
+    position: relative;
+    line-height: 1;
+}
+
+/* Detail List (On-Site, Hybrid, dll) */
+.details {
+    font-size: 13px;
+    color: #333;
+    z-index: 2;
+    position: relative;
+    margin-top: auto;
+}
+
+.details p {
+    font-weight: 700;
+    margin-bottom: 8px;
+    font-size: 12px;
+}
+
+.details ul {
+    list-style: none;
+    padding: 0;
+}
+
+.details ul li {
+    margin-bottom: 4px;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+/* Icon Background (SVG) */
+.bg-icon {
+    position: absolute;
+    right: -15px;
+    bottom: -15px;
+    width: 130px;
+    height: 130px;
+    color: #999;
+    opacity: 0.1; /* Transparan halus */
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Responsif untuk Layar Kecil */
+@media (max-width: 1024px) {
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+    .stats-grid { grid-template-columns: 1fr; }
+}
+
+/* =========================================
+   STYLE KHUSUS ICON (SVG) - UPDATE BARU
+   ========================================= */
+
+/* 1. Icon Standar (Untuk Navbar / Tombol) */
+.icon-svg {
+    width: 20px;
+    height: 20px;
+    fill: none;            /* Pindahan dari fill="none" */
+    stroke: currentColor;  /* Mengikuti warna teks parent */
+    stroke-width: 2;       /* Ketebalan garis */
+    stroke-linecap: round; /* Ujung garis membulat */
+    stroke-linejoin: round;
+    vertical-align: middle;
+}
+
+/* 2. Icon Background Dashboard (Ukuran Besar & Pudar) */
+.bg-icon {
+    position: absolute;
+    right: -15px;
+    bottom: -15px;
+    width: 120px;
+    height: 120px;
+    opacity: 0.15;         /* Efek pudar */
+    pointer-events: none;  /* Agar tidak bisa diklik */
+    z-index: 1;
+    
+    /* Properti SVG dipindah ke sini */
+    fill: none;
+    stroke: #555;          /* Warna garis icon background */
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Jika butuh variasi warna khusus untuk background icon */
+.stat-card:hover .bg-icon {
+    stroke: #000;          /* Icon jadi lebih gelap saat hover */
+    opacity: 0.2;
+    transition: all 0.3s ease;
+}
+
+/* =========================================
+   STYLE KHUSUS HALAMAN KELOLA LOWONGAN (ADMIN)
+   ========================================= */
+
+/* Header Halaman (Judul + Tombol Tambah) */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    margin-top: 10px; 
+}
+
+.page-header h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #000;
+}
+
+/* Tombol Tambah Lowongan */
+.btn-tambah {
+    background-color: #D9D9D9;
+    border: 1px solid #000;
+    color: #000;
+    text-decoration: none; /* Penting karena biasanya ini tag <a> */
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: inline-block;
+}
+
+.btn-tambah:hover {
+    background-color: #C3C3C3;
+}
+
+/* Filter / Search Bar */
+.filter-bar {
+    background-color: #C3C3C3; /* Warna background bar abu-abu */
+    padding: 15px;             /* Jarak ke dalam */
+    border-radius: 8px;        /* Sudut melengkung */
+    display: flex;             /* Menyusun isi ke samping */
+    gap: 15px;                 /* Jarak antar elemen input */
+    align-items: center;       /* Rata tengah secara vertikal */
+    margin-bottom: 25px;
+}
+
+/* Style untuk Input Text dan Select Dropdown */
+.search-input, .filter-select {
+    flex: 1;                   /* Agar lebar input membagi rata sisa ruang (Responsive) */
+    padding: 12px 15px;        /* Padding dalam input */
+    border: none;              /* Hapus border bawaan */
+    border-radius: 5px;        /* Sudut input melengkung */
+    background-color: #F5F5F5; /* Warna background input (Putih Tulang) */
+    font-size: 14px;
+    color: #333;
+    outline: none;             /* Hapus garis biru saat diklik */
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Style Tombol Search */
+.btn-search {
+    background-color: #EBE9E9;
+    border: none;
+    padding: 12px 30px;        /* Lebar tombol */
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    white-space: nowrap;       /* Agar teks tidak turun baris */
+}
+
+.btn-search:hover {
+    background-color: #d4d4d4;
+    transform: translateY(-1px);
+}
+
+/* Responsif untuk HP: Filter jadi memanjang ke bawah */
+@media (max-width: 768px) {
+    .filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+/* Container Tabel Data Lowongan */
+.table-container {
+    background-color: #D9D9D9;
+    border-radius: 8px;
+    padding: 0; 
+    overflow: hidden; /* Agar radius sudut tabel terlihat */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: #888; /* Header tabel abu gelap */
+    color: #000;
+}
+
+th, td {
+    padding: 15px 20px;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Styling Baris Tabel (Efek terpisah/Card style) */
+tbody tr {
+    background-color: #EBE9E9;
+    border-bottom: 10px solid #D9D9D9; /* Trik jarak antar baris menggunakan border */
+}
+
+tbody tr:last-child {
+    border-bottom: none;
+}
+
+/* Tombol Aksi di dalam Tabel */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-edit, .btn-hapus {
+    padding: 6px 15px;
+    border: none;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #fff !important;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-edit {
+    background-color: #666; /* Abu Gelap */
+}
+
+.btn-hapus {
+    background-color: #999; /* Abu Sedang */
+}
+
+.btn-edit:hover { background-color: #444; }
+.btn-hapus:hover { background-color: #777; }
+
+/* =========================================
+   12. FORM ADMIN (TAMBAH & EDIT DATA)
+   ========================================= */
+
+/* Container Form (Kartu Putih/Abu Terang di Tengah) */
+.form-card {
+    background-color: #D9D9D9;
+    padding: 40px;
+    border-radius: 8px;
+    max-width: 800px; /* Lebar maksimal agar tidak terlalu lebar */
+    margin: 0 auto;   /* Posisi tengah */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Group Input (Label + Input) */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #000;
+    font-size: 14px;
+}
+
+/* Styling Input Text, Number, Date, Select, Textarea */
+.form-input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ccc; /* Border tipis */
+    border-radius: 6px;
+    background-color: #F5F5F5; /* Warna putih tulang */
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    transition: all 0.3s;
+}
+
+.form-input:focus {
+    background-color: #fff;
+    border-color: #555;
+}
+
+/* Khusus Textarea (Deskripsi) */
+textarea.form-input {
+    resize: vertical; /* User bisa tarik ke bawah */
+    min-height: 120px;
+}
+
+/* Group Tombol Aksi (Simpan & Batal) */
+.form-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.btn-save {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.btn-save:hover {
+    background-color: #000;
+}
+
+.btn-cancel {
+    background-color: #fff;
+    color: #333;
+    text-decoration: none;
+    padding: 12px 30px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    transition: 0.3s;
+    display: inline-block;
+}
+
+.btn-cancel:hover {
+    background-color: #e0e0e0;
+}
+
+/* =========================================
+   13. CUSTOM MODAL (KONFIRMASI HAPUS)
+   ========================================= */
+
+/* Latar Belakang Gelap (Overlay) */
+.modal-overlay {
+    display: none; /* Tersembunyi secara default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Hitam transparan */
+    z-index: 1000; /* Agar di atas segalanya */
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Kotak Modal */
+.modal-box {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    transform: scale(0.7);
+    transition: transform 0.3s ease;
+}
+
+/* Animasi saat Muncul */
+.modal-overlay.show {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-overlay.show .modal-box {
+    transform: scale(1);
+}
+
+/* Icon Peringatan Besar */
+.modal-icon {
+    font-size: 50px;
+    color: #d9534f; /* Merah */
+    margin-bottom: 15px;
+}
+
+.modal-box h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.modal-box p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 25px;
+}
+
+/* Tombol Modal */
+.modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.btn-confirm-delete {
+    background-color: #d9534f;
+    color: white;
+    text-decoration: none;
+    padding: 10px 25px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.btn-confirm-delete:hover {
+    background-color: #c9302c;
+    box-shadow: 0 4px 6px rgba(217, 83, 79, 0.3);
+}
+
+.btn-close-modal {
+    background-color: #e0e0e0;
+    color: #333;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-close-modal:hover {
+    background-color: #d0d0d0;
+}
+
+/* =========================================
+   14. HALAMAN DETAIL LOWONGAN (JOB DETAIL)
+   ========================================= */
+
+/* Breadcrumb Navigation */
+.breadcrumb {
+    padding: 20px 40px;
+    font-size: 14px;
+    color: #333;
+}
+
+.breadcrumb a {
+    text-decoration: none;
+    color: #333;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb strong {
+    font-weight: 700;
+    color: #000;
+}
+
+/* Kartu Detail Utama */
+.detail-card {
+    background-color: #FFF; /* Kartu putih di atas background abu */
+    margin: 0 40px 40px 40px; /* Margin bawah agar tidak mepet footer */
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Bagian Header Lowongan (Atas) */
+.job-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    flex-wrap: wrap; /* Agar responsif di layar kecil */
+    gap: 20px;
+}
+
+/* List Info Kiri (Lokasi, Tipe, Gaji) */
+.info-list {
+    list-style: none;
+    padding: 0;
+}
+
+.info-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+}
+
+.info-list .icon {
+    width: 20px;
+    text-align: center;
+    color: #555;
+}
+
+/* Meta Data (Diposting kapan) */
+.job-meta {
+    font-size: 12px;
+    color: #888;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+/* Tombol Aksi (Lamar & Simpan) */
+.action-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.btn-action {
+    background-color: #B0C4DE; /* Warna biru muda pudar sesuai request */
+    border: none;
+    padding: 10px 30px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 12px;
+    cursor: pointer;
+    text-transform: uppercase;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: background 0.3s;
+    text-decoration: none; /* Penting jika menggunakan tag <a> */
+    color: #000;
+    display: inline-block;
+}
+
+.btn-action:hover {
+    background-color: #9cb3d1;
+}
+
+/* Bagian Kanan Header (Persyaratan Tags) */
+.job-info-right {
+    width: 45%; /* Sedikit kurang dari 50% agar ada gap */
+    min-width: 300px;
+}
+
+.req-section {
+    margin-bottom: 20px;
+}
+
+.req-section h4 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #444;
+}
+
+.tags-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tag {
+    background-color: #EEE;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    border: 1px solid #DDD;
+    color: #333;
+}
+
+/* Divider Garis Tipis */
+.divider {
+    border: 0;
+    height: 1px;
+    background-color: #DDD;
+    margin: 20px 0 30px 0;
+}
+
+/* Bagian Body Deskripsi (Grid Layout 2 Kolom) */
+.job-body {
+    display: grid;
+    grid-template-columns: 30% 70%; /* Kiri 30%, Kanan 70% */
+    gap: 40px;
+}
+
+/* Kolom Kiri Bawah (Info Perusahaan) */
+.company-info h3 {
+    font-size: 16px;
+    font-weight: 400;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.company-name {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: #000;
+}
+
+.job-title-mini {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.section-title {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    margin-top: 15px;
+}
+
+.small-text {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+/* Kolom Kanan Bawah (Deskripsi Detail) */
+.job-desc-details h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+.desc-item {
+    margin-bottom: 25px;
+}
+
+.desc-item h4 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #222;
+}
+
+.desc-item p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+.desc-item ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.desc-item ul li {
+    font-size: 14px;
+    margin-bottom: 6px;
+    line-height: 1.5;
+    color: #444;
+}
+
+/* Responsif untuk Layar Kecil (Tablet/HP) */
+@media (max-width: 768px) {
+    .job-body {
+        grid-template-columns: 1fr; /* Jadi 1 kolom */
+    }
+    
+    .job-header {
+        flex-direction: column;
+    }
+    
+    .job-info-right {
+        width: 100%;
+    }
+}

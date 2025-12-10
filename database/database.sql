@@ -116,7 +116,7 @@ INSERT INTO jobs (department_id, title, description, requirement_id, job_type, s
 -- 4. User (Data Asli Anda)
 -- Password diset ke hash "123456" agar bisa login
 INSERT INTO user (full_name, username, role, email, phone_number, password) VALUES 
-('Elsya Nur Aulia Handayani', 'elsya_admin', 'admin', 'elsya@company.com', '081211112222', '$2y$10$EpRnTzVlqHNP0r.pbKtTHOny.k.mpsv/K4y.ZgC/h.h.w.h.w.h.'), -- Password: 123456
+('Elsya Nur Aulia Handayani', 'elsya_admin', 'admin', 'elsya@company.com', '081211112222', '$2y$10$J/9XjM.yv.7k9x/k9x.9Zu.9XjM.yv.7k9x/k9x.9Zu.9XjM.y'), -- Password: 123456
 ('Falih Dzakwan', 'falih_int', 'interviewer', 'falih@company.com', '081233334444', '$2y$10$EpRnTzVlqHNP0r.pbKtTHOny.k.mpsv/K4y.ZgC/h.h.w.h.w.h.'), -- Password: 123456
 ('Oktavia Nur Rahmadani', 'oktvia', 'candidate', 'oktavia@gmail.com', '081255556666', '$2y$10$EpRnTzVlqHNP0r.pbKtTHOny.k.mpsv/K4y.ZgC/h.h.w.h.w.h.'), -- Password: 123456
 ('Laudya Aprilia Khoirum', 'lauuudy_a', 'candidate', 'laudya@gmail.com', '081277778888', '$2y$10$EpRnTzVlqHNP0r.pbKtTHOny.k.mpsv/K4y.ZgC/h.h.w.h.w.h.'); -- Password: 123456
@@ -142,3 +142,12 @@ INSERT INTO scoring (user_id, application_id, interview_score, technical_score) 
 -- Password untuk semua user di atas adalah: 123456
 -- Jika ingin login sebagai Elsya (Admin), gunakan pass: 123456
 -- ==========================================================
+
+-- Hapus Foreign Key yang lama (scoring_ibfk_2 sesuai pesan error Anda)
+ALTER TABLE scoring DROP FOREIGN KEY scoring_ibfk_2;
+
+-- Buat Foreign Key baru dengan fitur ON DELETE CASCADE
+ALTER TABLE scoring 
+ADD CONSTRAINT scoring_ibfk_2 
+FOREIGN KEY (application_id) REFERENCES applications(application_id) 
+ON DELETE CASCADE;
