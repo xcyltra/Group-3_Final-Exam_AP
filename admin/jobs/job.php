@@ -96,7 +96,7 @@ try {
             </select>
 
             <select name="dept" class="filter-select">
-                <option value="">Lokasi Kerja</option> <?php foreach($departments as $d): ?>
+                <option value="">Departemen</option> <?php foreach($departments as $d): ?>
                     <option value="<?php echo $d['department_id']; ?>" <?php echo ($filter_dept == $d['department_id']) ? 'selected' : ''; ?>>
                         <?php echo htmlspecialchars($d['name']); ?>
                     </option>

@@ -30,7 +30,7 @@ if (!empty($filter_type)) {
     $where_clauses[] = "j.job_type = :type";
     $params[':type'] = $filter_type;
 }
-// Filter Lokasi (Departemen)
+// Filter Departemen
 if (!empty($filter_loc)) {
     $where_clauses[] = "j.department_id = :loc";
     $params[':loc'] = $filter_loc;
@@ -91,7 +91,7 @@ try {
             </select>
 
             <select name="loc" class="filter-select">
-                <option value="">Lokasi Kerja</option>
+                <option value="">Departemen</option>
                 <?php foreach($departments as $d): ?>
                     <option value="<?php echo $d['department_id']; ?>" <?php echo ($filter_loc == $d['department_id']) ? 'selected' : ''; ?>>
                         <?php echo htmlspecialchars($d['name']); ?>
