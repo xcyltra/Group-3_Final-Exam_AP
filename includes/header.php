@@ -5,7 +5,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // Konfigurasi Base URL (Sesuaikan folder htdocs Anda jika perlu)
 // Jika folder project Anda bernama 'recruitment', biarkan seperti ini.
-$base_url = '/recruitment'; 
+$base_url = '/Group-3_Final-Exam_AP'; 
 
 // Deteksi halaman saat ini untuk class 'active'
 $current_page = basename($_SERVER['PHP_SELF']);
