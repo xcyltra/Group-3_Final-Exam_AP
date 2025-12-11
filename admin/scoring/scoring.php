@@ -166,13 +166,13 @@ $file_map = [
             <table>
                 <thead>
                     <tr>
-                        <th style="background-color: #888; color: #000;">ID Aplikasi</th>
-                        <th style="background-color: #888; color: #000;">Nama Pelamar</th>
-                        <th style="background-color: #888; color: #000;">Posisi</th>
-                        <th style="background-color: #888; color: #000;">File</th>
-                        <th style="background-color: #888; color: #000;">Interview Score</th>
-                        <th style="background-color: #888; color: #000;">Technical Score</th>
-                        <th style="background-color: #888; color: #000; text-align: center;">Aksi</th>
+                        <th>ID Aplikasi</th>
+                        <th>Nama Pelamar</th>
+                        <th>Posisi</th>
+                        <th>File</th>
+                        <th>Interview Score</th>
+                        <th>Technical Score</th>
+                        <th style=" text-align: center;">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
