@@ -22,7 +22,7 @@ if (isset($_POST['login'])) {
             if ($user['role'] == 'admin') {
                 header("Location: ../admin/index.php");
             } elseif ($user['role'] == 'interviewer') {
-                header("Location: ../interviewer/index.php");
+                header("Location: ../admin/index.php");
             } else {
                 header("Location: ../index.php");
             }
