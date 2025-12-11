@@ -167,11 +167,11 @@ $file_map = [
                 <thead>
                     <tr>
                         <th>ID Aplikasi</th>
-                        <th>Nama Pelamar</th>
-                        <th>Posisi</th>
-                        <th>File</th>
-                        <th>Interview Score</th>
-                        <th>Technical Score</th>
+                        <th style=" text-align: center;">Nama Pelamar</th>
+                        <th style=" text-align: center;">Posisi</th>
+                        <th style=" text-align: center;">File</th>
+                        <th style=" text-align: center;">Interview Score</th>
+                        <th style=" text-align: center;">Technical Score</th>
                         <th style=" text-align: center;">Aksi</th>
                     </tr>
                 </thead>
