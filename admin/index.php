@@ -3,7 +3,8 @@ session_start();
 require_once '../config/database.php';
 
 // Cek Akses Admin
-if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+if (!isset($_SESSION['role']) || ($_SESSION['role'] !== 'admin' && $_SESSION['role'] !== 'interviewer')) {
+    // Jika bukan admin DAN bukan interviewer, tendang ke login
     header("Location: ../auth/login.php");
     exit;
 }

@@ -33,8 +33,12 @@ $current_page = basename($_SERVER['PHP_SELF']);
                 <a href="<?php echo $base_url; ?>/about.php" class="<?php echo ($current_page == 'about.php') ? 'active' : ''; ?>">Tentang Perusahaan</a>
 
             <?php else: ?>
-                <a href="<?php echo $base_url; ?>/index.php" class="<?php echo ($current_page == 'index.php') ? 'active' : ''; ?>">Lowongan Kerja</a>
-                <a href="<?php echo $base_url; ?>/about.php" class="<?php echo ($current_page == 'about.php') ? 'active' : ''; ?>">Tentang Perusahaan</a>
+                <a href="<?php echo $base_url; ?>/admin/index.php" class="<?php echo ($current_page == 'index.php') ? 'active' : ''; ?>">Dashboard</a>
+                <a href="<?php echo $base_url; ?>/admin/jobs/job.php" class="<?php echo ($current_page == 'job.php') ? 'active' : ''; ?>">Lowongan Kerja</a>
+                <a href="<?php echo $base_url; ?>/admin/applications/application.php" class="<?php echo ($current_page == 'application.php') ? 'active' : ''; ?>">Pendaftaran</a>
+                <a href="<?php echo $base_url; ?>/admin/departments/department.php" class="<?php echo ($current_page == 'department.php') ? 'active' : ''; ?>">Departemen</a>
+                <a href="<?php echo $base_url; ?>/admin/requirements/requirement.php" class="<?php echo ($current_page == 'requirement.php') ? 'active' : ''; ?>">Persyaratan</a>
+                <a href="<?php echo $base_url; ?>/admin/scoring/scoring.php" class="<?php echo ($current_page == 'scoring.php') ? 'active' : ''; ?>">Scoring</a>
             <?php endif; ?>
 
         </div>
