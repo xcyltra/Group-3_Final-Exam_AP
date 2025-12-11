@@ -25,8 +25,8 @@ $current_page = basename($_SERVER['PHP_SELF']);
                 <a href="<?php echo $base_url; ?>/admin/jobs/job.php" class="<?php echo ($current_page == 'job.php') ? 'active' : ''; ?>">Lowongan Kerja</a>
                 <a href="<?php echo $base_url; ?>/admin/applications/application.php" class="<?php echo ($current_page == 'application.php') ? 'active' : ''; ?>">Pendaftaran</a>
                 <a href="<?php echo $base_url; ?>/admin/departments/department.php" class="<?php echo ($current_page == 'department.php') ? 'active' : ''; ?>">Departemen</a>
-                <a href="#">Persyaratan</a>
-                <a href="#">User</a>
+                <a href="<?php echo $base_url; ?>/admin/requirements/requirement.php" class="<?php echo ($current_page == 'requirement.php') ? 'active' : ''; ?>">Persyaratan</a>
+                <a href="<?php echo $base_url; ?>/admin/users/user.php" class="<?php echo ($current_page == 'user.php') ? 'active' : ''; ?>">User</a>
 
             <?php elseif (isset($_SESSION['role']) && $_SESSION['role'] == 'candidate'): ?>
                 <a href="<?php echo $base_url; ?>/index.php" class="<?php echo ($current_page == 'index.php') ? 'active' : ''; ?>">Lowongan Tersedia</a>
