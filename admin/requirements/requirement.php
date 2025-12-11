@@ -15,7 +15,6 @@ $params = [];
 $sql = "SELECT * FROM requirements";
 
 if ($search) {
-    // Cari berdasarkan Pendidikan atau Pengalaman
     $sql .= " WHERE education LIKE ? OR experience LIKE ?";
     $params = ["%$search%", "%$search%"];
 }
@@ -25,15 +24,27 @@ $sql .= " ORDER BY requirement_id DESC";
 $stmt = $conn->prepare($sql);
 $stmt->execute($params);
 $requirements = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// Helper: Mapping Nama Kolom Database ke Nama Dokumen Asli
+$doc_labels = [
+    'status_cv' => 'CV',
+    'status_identity_card' => 'KTP',
+    'status_degree_certificate' => 'Ijazah',
+    'status_family_register' => 'KK',
+    'status_police_certificate' => 'SKCK',
+    'status_passport_photo' => 'Pas Foto',
+    'status_resume' => 'Resume',
+    'status_training_certificate' => 'Sertifikat',
+    'status_portfolio' => 'Portofolio',
+    'status_health_certificate' => 'Surat Sehat'
+];
 ?>
 
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kelola Persyaratan - Miso Corp</title>
-    
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../assets/css/style.css?v=<?php echo time(); ?>">
 </head>
@@ -49,8 +60,7 @@ $requirements = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
 
         <form action="" method="GET" class="filter-bar">
-            <input type="text" name="search" class="search-input" placeholder="Cari Persyaratan (Pendidikan / Pengalaman)" value="<?php echo htmlspecialchars($search); ?>">
-            
+            <input type="text" name="search" class="search-input" placeholder="Cari Pendidikan / Pengalaman..." value="<?php echo htmlspecialchars($search); ?>">
             <button type="submit" class="btn-search">Search</button>
         </form>
 
@@ -58,8 +68,10 @@ $requirements = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <table>
                 <thead>
                     <tr>
-                        <th style="background-color: #888; color: #000;">Persyaratan</th>
-                        
+                        <th width="5%" style="background-color: #888; color: #000;">ID</th>
+                        <th width="20%" style="background-color: #888; color: #000;">Pendidikan</th>
+                        <th width="20%" style="background-color: #888; color: #000;">Pengalaman</th>
+                        <th width="35%" style="background-color: #888; color: #000;">Berkas Wajib</th>
                         <th width="20%" style="background-color: #888; color: #000; text-align: center;">Aksi</th>
                     </tr>
                 </thead>
@@ -67,33 +79,36 @@ $requirements = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <?php if (count($requirements) > 0): ?>
                         <?php foreach($requirements as $req): ?>
                         <tr>
+                            <td>#<?php echo $req['requirement_id']; ?></td>
+                            
+                            <td><strong><?php echo htmlspecialchars($req['education']); ?></strong></td>
+                            
+                            <td><?php echo htmlspecialchars($req['experience']); ?></td>
+                            
                             <td>
-                                <div style="line-height: 1.6;">
-                                    <strong>ID Paket:</strong> #<?php echo $req['requirement_id']; ?> <br>
-                                    <strong>Pendidikan:</strong> <?php echo htmlspecialchars($req['education']); ?> <br>
-                                    <strong>Pengalaman:</strong> <?php echo htmlspecialchars($req['experience']); ?>
-                                    
-                                    <div style="margin-top: 5px; font-size: 12px; color: #555;">
-                                        <em>Wajib: 
-                                        <?php 
-                                            $docs = [];
-                                            if($req['status_cv'] == 'Required') $docs[] = 'CV';
-                                            if($req['status_identity_card'] == 'Required') $docs[] = 'KTP';
-                                            // Tampilkan list dokumen wajib dipisah koma
-                                            echo implode(', ', $docs);
-                                        ?>
-                                        </em>
-                                    </div>
+                                <div style="display: flex; gap: 5px; flex-wrap: wrap;">
+                                    <?php 
+                                        $found = false;
+                                        foreach($doc_labels as $col => $label) {
+                                            // Cek jika statusnya 'Required'
+                                            if ($req[$col] == 'Required') {
+                                                echo '<span style="background: #e0e0e0; padding: 2px 8px; border-radius: 4px; font-size: 11px; border: 1px solid #ccc;">'.$label.'</span>';
+                                                $found = true;
+                                            }
+                                        }
+                                        if (!$found) {
+                                            echo '<span style="color: #888; font-style: italic; font-size: 12px;">Tidak ada berkas wajib</span>';
+                                        }
+                                    ?>
                                 </div>
                             </td>
                             
                             <td>
                                 <div class="action-buttons" style="justify-content: center;">
-                                    <a href="requirement_edit.php?id=<?php echo $req['requirement_id']; ?>" class="btn-edit" style="background-color: #666;">Edit</a>
+                                    <a href="requirement_edit.php?id=<?php echo $req['requirement_id']; ?>" class="btn-edit">Edit</a>
                                     
                                     <a href="javascript:void(0);" 
                                        class="btn-hapus" 
-                                       style="background-color: #999;"
                                        onclick="openDeleteModal('requirement_delete.php?id=<?php echo $req['requirement_id']; ?>')">
                                        Hapus
                                     </a>
@@ -103,7 +118,7 @@ $requirements = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <?php endforeach; ?>
                     <?php else: ?>
                         <tr>
-                            <td colspan="2" style="text-align: center; padding: 30px;">
+                            <td colspan="5" style="text-align: center; padding: 30px;">
                                 Tidak ada data persyaratan ditemukan.
                             </td>
                         </tr>
@@ -118,7 +133,7 @@ $requirements = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="modal-box">
             <div class="modal-icon">⚠️</div>
             <h3>Konfirmasi Hapus</h3>
-            <p>Apakah Anda yakin ingin menghapus paket persyaratan ini?</p>
+            <p>Yakin ingin menghapus paket persyaratan ini?</p>
             <div class="modal-actions">
                 <button class="btn-close-modal" onclick="closeDeleteModal()">Batal</button>
                 <a href="#" id="confirmDeleteBtn" class="btn-confirm-delete">Ya, Hapus</a>
