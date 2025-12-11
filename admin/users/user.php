@@ -73,9 +73,9 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <table>
                 <thead>
                     <tr>
-                        <th style="background-color: #888; color: #000; width: 50%;">User</th>
-                        <th style="background-color: #888; color: #000; text-align: center;">Role User</th>
-                        <th style="background-color: #888; color: #000; text-align: center; width: 20%;">Aksi</th>
+                        <th style="width: 50%;">User</th>
+                        <th style="text-align: center;">Role User</th>
+                        <th style="text-align: center; width: 20%;">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>

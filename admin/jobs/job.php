@@ -3,9 +3,10 @@ session_start();
 require_once '../../config/database.php';
 
 // 1. Cek Akses Admin
+// Cek Akses (Admin ATAU Interviewer boleh masuk)
 if (!isset($_SESSION['role']) || ($_SESSION['role'] !== 'admin' && $_SESSION['role'] !== 'interviewer')) {
     // Jika bukan admin DAN bukan interviewer, tendang ke login
-    header("Location: ../auth/login.php");
+    header("Location: ../../auth/login.php");
     exit;
 }
 
@@ -82,7 +83,7 @@ try {
     <div class="dashboard-container">
         
         <div class="page-header">
-            <h2>Daftar Lowongan Pekerjaan</h2>
+            <h2>Kelola Lowongan Pekerjaan</h2>
             <a href="job_create.php" class="btn-tambah">+ Tambah</a>
         </div>
 
@@ -91,13 +92,15 @@ try {
             <input type="text" name="search" class="search-input" placeholder="Cari Lowongan Kerja" value="<?php echo htmlspecialchars($search_text); ?>">
             
             <select name="type" class="filter-select">
-                <option value="">Tipe Pekerjaan</option> <option value="On-Site" <?php echo ($filter_type == 'On-Site') ? 'selected' : ''; ?>>On-Site</option>
+                <option value="">Lokasi</option>
+                <option value="On-Site" <?php echo ($filter_type == 'On-Site') ? 'selected' : ''; ?>>On-Site</option>
                 <option value="Remote" <?php echo ($filter_type == 'Remote') ? 'selected' : ''; ?>>Remote</option>
                 <option value="Hybrid" <?php echo ($filter_type == 'Hybrid') ? 'selected' : ''; ?>>Hybrid</option>
             </select>
 
             <select name="dept" class="filter-select">
-                <option value="">Departemen</option> <?php foreach($departments as $d): ?>
+                <option value="">Departemen</option>
+                <?php foreach($departments as $d): ?>
                     <option value="<?php echo $d['department_id']; ?>" <?php echo ($filter_dept == $d['department_id']) ? 'selected' : ''; ?>>
                         <?php echo htmlspecialchars($d['name']); ?>
                     </option>
@@ -113,14 +116,14 @@ try {
                 <thead>
                     <tr>
                         <th width="5%">No</th>
-                        <th>Posisi / Judul</th>
-                        <th>Departemen</th>
-                        <th>Tipe</th>
-                        <th>Kuota</th>
-                        <th>Tutup Lamaran</th>
-                        <th width="15%">Aksi</th>
+                        <th style= "text-align: center;">Nama Pekerjaan</th>
+                        <th style= "text-align: center;">Departemen</th>
+                        <th style= "text-align: center;">Lokasi</th>
+                        <th style= "text-align: center;">Kuota</th>
+                        <th style= "text-align: center;">Tutup Lamaran</th>
+                        <th style= "text-align: center;">Aksi</th>
                     </tr>
-                </thead>
+                </thead>    
                 <tbody>
                     <?php if (count($jobs) > 0): ?>
                         <?php $no = 1; foreach($jobs as $job): ?>
@@ -129,7 +132,7 @@ try {
                             <td><strong><?php echo htmlspecialchars($job['title']); ?></strong></td>
                             <td><?php echo htmlspecialchars($job['dept_name']); ?></td>
                             <td>
-                                <span style="background: #e0e0e0; padding: 2px 8px; border-radius: 4px; font-size: 12px;">
+                                <span class="tag">
                                     <?php echo htmlspecialchars($job['job_type']); ?>
                                 </span>
                             </td>
@@ -138,7 +141,7 @@ try {
                                 <?php 
                                     $closing = strtotime($job['closing_date']);
                                     echo date('d M Y', $closing);
-                                    if ($closing < time()) echo ' <span style="color:red; font-size:11px;">(Expired)</span>';
+                                    if ($closing < time()) echo ' <span style="color: var(--danger-color); font-size: 11px; font-weight: 600;">(Expired)</span>';
                                 ?>
                             </td>
                             <td>
@@ -155,7 +158,7 @@ try {
                         <?php endforeach; ?>
                     <?php else: ?>
                         <tr>
-                            <td colspan="7" style="text-align: center; padding: 30px;">
+                            <td colspan="7" style="text-align: center; padding: 30px; color: var(--text-secondary);">
                                 Tidak ada lowongan yang ditemukan.
                             </td>
                         </tr>
@@ -184,19 +187,15 @@ try {
     <script>
         // Fungsi Buka Modal
         function openDeleteModal(deleteUrl) {
-            // 1. Ambil elemen modal
             const modal = document.getElementById('deleteModal');
-            // 2. Ambil tombol "Ya, Hapus"
             const confirmBtn = document.getElementById('confirmDeleteBtn');
             
-            // 3. Isi href tombol hapus dengan URL yang dikirim dari tabel (job_delete.php?id=...)
             confirmBtn.href = deleteUrl;
             
-            // 4. Tampilkan modal dengan animasi
             modal.style.display = 'flex';
             setTimeout(() => {
                 modal.classList.add('show');
-            }, 10); // Delay dikit biar animasi jalan
+            }, 10);
         }
 
         // Fungsi Tutup Modal
@@ -205,10 +204,10 @@ try {
             modal.classList.remove('show');
             setTimeout(() => {
                 modal.style.display = 'none';
-            }, 300); // Tunggu animasi selesai baru hide
+            }, 300);
         }
 
-        // Tutup modal jika user klik di area gelap (luar kotak)
+        // Tutup modal jika user klik di area gelap
         window.onclick = function(event) {
             const modal = document.getElementById('deleteModal');
             if (event.target == modal) {

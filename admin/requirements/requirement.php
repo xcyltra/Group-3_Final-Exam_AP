@@ -3,6 +3,7 @@ session_start();
 require_once '../../config/database.php';
 
 // 1. Cek Akses Admin
+// Cek Akses (Admin ATAU Interviewer boleh masuk)
 if (!isset($_SESSION['role']) || ($_SESSION['role'] !== 'admin' && $_SESSION['role'] !== 'interviewer')) {
     // Jika bukan admin DAN bukan interviewer, tendang ke login
     header("Location: ../auth/login.php");
@@ -69,11 +70,11 @@ $doc_labels = [
             <table>
                 <thead>
                     <tr>
-                        <th width="5%" style="background-color: #888; color: #000;">ID</th>
-                        <th width="20%" style="background-color: #888; color: #000;">Pendidikan</th>
-                        <th width="20%" style="background-color: #888; color: #000;">Pengalaman</th>
-                        <th width="35%" style="background-color: #888; color: #000;">Berkas Wajib</th>
-                        <th width="20%" style="background-color: #888; color: #000; text-align: center;">Aksi</th>
+                        <th width="5%" style= "text-align: center;">ID</th>
+                        <th width="20%" style= "text-align: center;">Pendidikan</th>
+                        <th width="20%" style= "text-align: center;">Pengalaman</th>
+                        <th width="35%" style= "text-align: center;">Berkas Wajib</th>
+                        <th width="20%" style="text-align: center;">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>

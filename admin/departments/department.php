@@ -3,6 +3,7 @@ session_start();
 require_once '../../config/database.php';
 
 // 1. Cek Akses Admin
+// Cek Akses (Admin ATAU Interviewer boleh masuk)
 if (!isset($_SESSION['role']) || ($_SESSION['role'] !== 'admin' && $_SESSION['role'] !== 'interviewer')) {
     // Jika bukan admin DAN bukan interviewer, tendang ke login
     header("Location: ../auth/login.php");
@@ -72,9 +73,9 @@ try {
             <table>
                 <thead>
                     <tr>
-                        <th style="background-color: #888; color: #000;">Nama Departemen</th>
-                        <th style="background-color: #888; color: #000;">Deskripsi</th>
-                        <th style="background-color: #888; color: #000; text-align: center;">Aksi</th>
+                        <th style= "text-align: center;">Nama Departemen</th>
+                        <th style= "text-align: center;">Deskripsi</th>
+                        <th style=" text-align: center;">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
