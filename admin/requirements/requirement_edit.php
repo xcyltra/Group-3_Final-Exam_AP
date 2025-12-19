@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         $conn->prepare($sql)->execute($params);
-        header("Location: index.php?msg=updated");
+        header("Location: requirement.php?msg=updated");
         exit;
 
     } catch (PDOException $e) {
