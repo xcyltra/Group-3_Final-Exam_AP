@@ -29,7 +29,7 @@ if (!empty($type)) {
     $params[':type'] = $type;
 }
 
-// D. Filter Departemen (Checkbox Array)
+// C. Filter Departemen (Checkbox Array)
 if (!empty($selected_depts)) {
     $dept_placeholders = [];
     foreach ($selected_depts as $key => $dept_id) {
