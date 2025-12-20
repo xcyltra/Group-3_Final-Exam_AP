@@ -21,7 +21,7 @@ if ($search) {
     $params = ["%$search%", "%$search%"];
 }
 
-$sql .= " ORDER BY requirement_id DESC";
+$sql .= " ORDER BY requirement_id ASC";
 
 $stmt = $conn->prepare($sql);
 $stmt->execute($params);
@@ -81,7 +81,7 @@ $doc_labels = [
                     <?php if (count($requirements) > 0): ?>
                         <?php foreach($requirements as $req): ?>
                         <tr>
-                            <td>#<?php echo $req['requirement_id']; ?></td>
+                            <td><?php echo $req['requirement_id']; ?></td>
                             
                             <td><strong><?php echo htmlspecialchars($req['education']); ?></strong></td>
                             
