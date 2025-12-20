@@ -83,8 +83,7 @@ try {
                 </ul>
 
                 <div class="job-meta">
-                    Tayang sejak <?php echo date('d M Y', strtotime($job['closing_date'] . ' -1 month')); ?> 
-                    &bull; Diperbarui 3 hari yang lalu
+                    Tayang sejak <?php echo date('d M Y', strtotime($job['closing_date'] . ' -1 month')); ?>
                 </div>
 
                 <div class="action-buttons">
