@@ -76,7 +76,7 @@ $applications = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
 
         <form action="" method="GET" class="filter-bar">
-            <input type="text" name="search" class="search-input" placeholder="Search Applicant Name" value="<?php echo htmlspecialchars($search); ?>">
+            <input type="text" name="search" class="search-input" placeholder="Cari Nama Pendaftar" value="<?php echo htmlspecialchars($search); ?>">
             
             <select name="type" class="filter-select">
                 <option value="">Lokasi</option>
@@ -124,7 +124,7 @@ $applications = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                        class="btn-hapus" 
                                        style="background-color: #999;"
                                        onclick="openDeleteModal('application_delete.php?id=<?php echo $app['application_id']; ?>')">
-                                       Delete
+                                       Hapus
                                     </a>
                                 </div>
                             </td>
@@ -143,8 +143,8 @@ $applications = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div id="deleteModal" class="modal-overlay">
         <div class="modal-box">
             <div class="modal-icon">⚠️</div>
-            <h3>Confirm Delete</h3>
-            <p>Are you sure you want to delete this application?</p>
+            <h3>Konfirmasi Hapus</h3>
+            <p>Apa anda yakin ingin menghapus data pendaftar ini?</p>
             <div class="modal-actions">
                 <button class="btn-close-modal" onclick="closeDeleteModal()">Cancel</button>
                 <a href="#" id="confirmDeleteBtn" class="btn-confirm-delete">Yes, Delete</a>

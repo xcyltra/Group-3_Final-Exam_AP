@@ -50,8 +50,7 @@ try {
     <?php include '../../includes/header.php'; ?>
 
     <div class="breadcrumb">
-        <a href="index.php">Lowongan Kerja</a> &nbsp; &gt; &nbsp; 
-        <a href="#"><?php echo htmlspecialchars($job['dept_name']); ?></a> &nbsp; &gt; &nbsp; 
+        <a href="../../index.php">Lowongan Tersedia</a> &nbsp; &gt; &nbsp;
         <strong><?php echo htmlspecialchars($job['title']); ?></strong>
     </div>
 
