@@ -3,8 +3,6 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Konfigurasi Base URL (Sesuaikan folder htdocs Anda jika perlu)
-// Jika folder project Anda bernama 'recruitment', biarkan seperti ini.
 $base_url = '/Group-3_Final-Exam_AP'; 
 
 // Deteksi halaman saat ini untuk class 'active'

@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         $stmt->execute($params);
-        header("Location: index.php?msg=created");
+        header("Location: requirement.php?msg=created");
         exit;
 
     } catch (PDOException $e) {
